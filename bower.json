@@ -1,0 +1,29 @@
+{
+    "name": "tappy-chromeserialcommunicator",
+    "description": "Communicator for using TCMP tappy devices with chrome packged app serial ports",
+    "main": "dist/tappychromeserial.js",
+    "authors": [
+        "TapTrack"
+    ],
+    "license": "Apache-2.0",
+    "keywords": [
+        "TCMP",
+        "Tappy",
+        "TappyUSB",
+        "Chrome"
+    ],
+    "moduleType": [],
+    "homepage": "",
+    "ignore": [
+        "**/.*",
+        "gulpfile.js",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/TapTrack/TappyChromeSerialCommunicatorJs.git"
+    }
+}
