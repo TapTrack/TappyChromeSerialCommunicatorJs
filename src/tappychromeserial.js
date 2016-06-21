@@ -128,6 +128,7 @@
             self.serial.send(this.connectionId,buffer,function(sendInfo) {
                 if(sendInfo.hasOwnProperty("error") && sendInfo.error !== null) {
                     if(typeof self.callbacks.serialPortErrorCb === 'function') {
+                        var data = {buffer: buffer};
                         self.callbacks.serialPortErrorCb(sendInfo,data);
                     }
                 }
