@@ -31,7 +31,7 @@
         this.dataReceivedCallback = function(bytes) {
 
         };
-        this.setErrorCallback = function(data) {
+        this.errorCallback = function(data) {
 
         };
         this.readCallback = function(info) {
@@ -117,26 +117,33 @@
         },
 
         disconnect: function(cb) {
-            this.disconnectImmediately = true;
-            if(!this.isConnecting && this.isConnected()) {
-                this.disconnectUnsafe(cb);
+            var self = this;
+            self.disconnectImmediately = true;
+            if(!self.isConnecting && self.isConnected()) {
+                self.disconnectUnsafe(cb);
             }
         },
 
         send: function(buffer) {
             var self = this;
-            self.serial.send(this.connectionId,buffer,function(sendInfo) {
+            self.serial.send(self.connectionId,buffer,function(sendInfo) {
                 if(sendInfo.hasOwnProperty("error") && sendInfo.error !== null) {
                     if(typeof self.callbacks.serialPortErrorCb === 'function') {
-                        var data = {buffer: buffer};
-                        self.callbacks.serialPortErrorCb(sendInfo,data);
+                        var data = {sendInfo: sendInfo, buffer: buffer};
+                        self.errorCallback(data);
                     }
                 }
             });
         },
 
         setDataCallback: function(cb) {
-            this.dataReceivedCallback = cb;
+            var self = this;
+            self.dataReceivedCallback = cb;
+        },
+
+        setErrorCallback: function(cb) {
+            var self = this;
+            self.errorCallback = cb;
         }
     };
     return ChromeSerialCommunicator;
