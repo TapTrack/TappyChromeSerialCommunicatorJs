@@ -1,3 +1,8 @@
+GLOBAL.chrome = {
+    runtime: {
+        lastError: false // a check should be added for this later
+    }
+};
 var ChromeSerial = require('../src/tappychromeserial.js');
 
 var MockDevice = function(mockSerial, connectionId) {
@@ -40,7 +45,7 @@ MockSerial.prototype = {
         this.lastGetDeviceCb = cb;
 
         for(var device in this.devices) {
-            cb({path: this.devicesi[device]});
+            cb({path: this.devices[device]});
         }
     },
 

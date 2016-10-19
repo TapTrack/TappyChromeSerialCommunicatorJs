@@ -62,16 +62,25 @@
                     this.path,
                     {bitrate: 115200},
                     function(connectionInfo) {
-                        self.isConnecting = false;
-                        self.connectionId = connectionInfo.connectionId;
-                        self.attachReadWrite();
 
-                        if(typeof cb === "function") {
-                            cb();
-                        }
+                        if(!chrome.runtime.lastError) {
+                            self.isConnecting = false;
+                            self.connectionId = connectionInfo.connectionId;
+                            self.attachReadWrite();
 
-                        if(self.disconnectImmediately) {
-                            self.disconnectUnsafe();
+                            if(typeof cb === "function") {
+                                cb(true);
+                            }
+
+                            if(self.disconnectImmediately) {
+                                self.disconnectUnsafe();
+                            }
+                        } else {
+                            self.isConnecting = false;
+
+                            if(typeof cb === "function") {
+                                cb(false);
+                            }
                         }
 
                     }

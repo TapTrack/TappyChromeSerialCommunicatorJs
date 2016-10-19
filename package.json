@@ -1,6 +1,6 @@
 {
     "name": "@taptrack/tappy-chromeserialcommunicator",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Communicator for using TCMP tappy devices with chrome packaged app serial ports",
     "main": "dist/tappychromeserial.js",
     "directories": {
